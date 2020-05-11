@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet"></link>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+body {
+	background-color: #acdfa4;
+}
+
+.center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+</style>
+<title>Lista de Convidados</title>
+</head>
+<body>
+	<div sec:authorize="isAuthenticated()"></div>
+	<div sec:authorize="hasRole('ROLE_ADMIN')"></div>
+	<div sec:authorize="hasRole('ROLE_USER')"></div>
+	<div class="panel panel-default" style="margin: 10px">
+		<div class="panel-heading">
+			<h1 class="panel-title">Lista Convidados</h1>
+		</div>
+		<!-- Painel -->
+		<div class="panel-body">
+			<a class="btn btn-info" th:href="@{/form-add-convidado}">Cadastrar</a>
+			<!-- Tabela -->
+			<table class="table">
+				<!-- List -->
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Nome</th>
+						<th>Nº de Acompanhantes</th>
+						<th colspan="2">Ações</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="convidado : ${page.content}">
+						<td th:text="${convidado.id}"></td>
+						<td th:text="${convidado.nome}"></td>
+						<td th:text="${convidado.qtdAcompanhantes}"></td>
+						<!-- Buttons -->
+						<td><a class="btn btn-success"
+							th:href="@{/form-edit-convidado/{id}(id=${convidado.id})}">Atualizar</a>
+							<a class="btn btn-danger"
+							th:href="@{/form-delete-convidado/{id}(id=${convidado.id})}">Deletar</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="center" th:with="sortParam=${sortProperty+','+(sortDesc?'desc':'asc')}">
+		<nav class="center" aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<li class="page-item disabled">
+				<span th:if="${page.hasPrevious()}" class="page-link">
+					<a	class="page-link" href="#" tabindex="-1">Previous</a></li>
+					<li class="page-item">
+					<a th:href="@{/lista(page=${page.number-1},size=${page.size},sort=${sortParam})}">Voltar</a></li>
+				</span>
+					<li><th:block
+						th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
+						<span th:if="${page.number == i}" class="selected">[[${i}+1]]</span>
+						<span th:unless="${page.number == i}"> <a class="page-link"
+							th:href="@{/lista(page=${i},size=${page.size},sort=${sortParam})}">[[${i}+1]]</a>
+						</span>
+
+					</th:block> <span th:if="${page.hasNext()}"><a
+						th:href="@{/lista-convidados(page=${page.number+1},size=${page.size},sort=${sortParam})}">Next</a>
+				</span>
+			</ul>
+		</nav>
+	</div>
+</body>
+</html>

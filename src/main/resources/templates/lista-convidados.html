@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
+<title>Lista de Convidados</title>
+</head>
+<body>
+	<div class="panel panel-default" style="margin: 10px">
+		<div class="panel-heading">
+			<h1 class="panel-title">Lista Convidados</h1>
+		</div>
+		<!-- Painel -->
+		<div class="panel-body">
+		<a class="btn btn-info" th:href="@{/form-add-convidado}" >Cadastrar</a>
+			<!-- Tabela -->
+			<table class="table">
+				<!-- List -->
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Nome</th>
+						<th>Nº de Acompanhantes</th>
+						<th colspan="2">Ações</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="convidado : ${convidados}">
+					    <td th:text="${convidado.id}"></td>
+						<td th:text="${convidado.nome}"></td>
+						<td th:text="${convidado.qtdAcompanhantes}"></td>
+						<!-- Buttons -->
+						<td>
+							<a class="btn btn-success" th:href="@{/form-edit-convidado/{id}(id=${convidado.id})}" >Atualizar</a>
+						    <a class="btn btn-danger" th:href="@{/form-delete-convidado/{id}(id=${convidado.id})}" >Deletar</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+insert into convidado (nome, qtd_acompanhantes)
+values
+		('Pedro Amado',2),
+		('Maria Flores',3),
+		('Ricardo alves',1),
+		('Robson Dias',5),
+		('Estiven Nort',4),
+		('Sebastiao salgado',3);
+
+		
+insert into convidado (nome, qtd_acompanhantes)
+values ('Pedro Amado',2)
+
+
+insert into convidado (nome, qtd_acompanhantes)
+values('Maria Flores',3);
+insert into convidado (nome, qtd_acompanhantes)
+values ('Ricardo alves',1);
+insert into convidado (nome, qtd_acompanhantes)
+values('Robson Dias',5);
+insert into convidado (nome, qtd_acompanhantes)
+values('Estiven Nort',4);
+insert into convidado (nome, qtd_acompanhantes)
+values('Sebastiao salgado',3);

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+body {
+	background-color: #acdfa4;
+}
+</style>	
+<title>Lista de Convidados</title>
+</head>
+<body>
+	<div class="panel panel-default" style="margin: 10px">
+		<div class="panel-heading">
+			<h1 class="panel-title">Lista Convidados</h1>
+		</div>
+		<!-- Painel -->
+		<div class="panel-body">
+			<form action="#" th:action="@{/deletar/{id}(id=${convidado.id})}" th:object="${convidado}" class="form-inline" style="margin: 20px 0">
+				<input type="text" th:field="*{id}" value="" name="id" readonly="readonly" class="form-control">
+				<input type="text" th:field="*{nome}" value="" name="nome" readonly="readonly" placeholder="nome" required class="form-control">
+				<input type="text" th:field="*{qtdAcompanhantes}" value="" name="qtdAcompanhantes" readonly="readonly" class="form-control">
+				<button type="submit" class="btn btn-danger">Excluir</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
